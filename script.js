@@ -1,4 +1,4 @@
-// Initial quotes array with categories
+// Quotes array with objects containing text and category
 let quotes = [
   { text: "The best way to get started is to quit talking and begin doing.", category: "Motivation" },
   { text: "Success is not the key to happiness. Happiness is the key to success.", category: "Success" },
@@ -9,8 +9,8 @@ const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const addQuoteBtn = document.getElementById("addQuoteBtn");
 
-// Function to show a random quote
-function showRandomQuote() {
+// Function to display a random quote
+function displayRandomQuote() {
   if (quotes.length === 0) {
     quoteDisplay.innerText = "No quotes available. Please add one!";
     return;
@@ -30,19 +30,20 @@ function addQuote() {
     return;
   }
 
-  // Add new quote object to quotes array
+  // Add new quote to array
   quotes.push({ text: quoteText, category: quoteCategory });
+
+  // Update DOM immediately with new quote
+  quoteDisplay.innerText = `"${quoteText}" — [${quoteCategory}]`;
 
   // Clear input fields
   document.getElementById("newQuoteText").value = "";
   document.getElementById("newQuoteCategory").value = "";
-
-  alert("New quote added successfully!");
 }
 
 // Event listeners
-newQuoteBtn.addEventListener("click", showRandomQuote);
+newQuoteBtn.addEventListener("click", displayRandomQuote);
 addQuoteBtn.addEventListener("click", addQuote);
 
-// Display first quote by default
-showRandomQuote();
+// Display a random quote on load
+displayRandomQuote();
