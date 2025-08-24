@@ -1,42 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .toolbar, .import-export, .filter, .form, .sync { margin: 1rem 0; }
+    #syncStatus { padding: .5rem .75rem; border-radius: .5rem; background: #f6f6f6; }
+    .conflict { border: 1px solid #ddd; padding: .75rem; border-radius: .5rem; margin: .5rem 0; }
+    .conflict h4 { margin: 0 0 .5rem 0; font-size: 1rem; }
+    button { cursor: pointer; }
+    #quoteDisplay { min-height: 48px; margin: .75rem 0; font-size: 1.05rem; }
+    .muted { color: #666; font-size: .9rem; }
+    label { margin-right: .5rem; }
+    select, input[type="text"] { padding: .4rem; }
+  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-   <!-- Category Filter -->
-<div>
-  <label for="categoryFilter">Filter by Category:</label>
-  <select id="categoryFilter" onchange="filterQuotes()">
-    <option value="all">All Categories</option>
-    <!-- Categories will be dynamically populated -->
-  </select>
-</div>
+  <!-- Category Filter -->
+  <div class="filter">
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+      <!-- Populated dynamically -->
+    </select>
+  </div>
 
-
+  <!-- Quote Display -->
   <div id="quoteDisplay"></div>
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Form to Add New Quote -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn">Add Quote</button>
+  <!-- Sync controls -->
+  <div class="sync">
+    <div class="toolbar">
+      <button id="syncNowBtn">Sync Now</button>
+      <label>
+        <input type="checkbox" id="autoSyncToggle" />
+        Auto Sync (30s)
+      </label>
+    </div>
+    <div id="syncStatus" class="muted">Idle.</div>
+    <div id="conflictArea" style="display:none;">
+      <h3>Conflicts detected</h3>
+      <div id="conflictList"></div>
+      <button id="applyResolutionsBtn">Apply Resolutions</button>
+    </div>
   </div>
 
   <!-- Import / Export JSON -->
-  <div>
+  <div class="import-export">
     <button id="exportBtn">Export Quotes (JSON)</button>
     <input type="file" id="importFile" accept=".json" />
   </div>
 
+  <!-- Form container (built dynamically to keep Task 0 compatibility) -->
+  <div id="formContainer" class="form"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
