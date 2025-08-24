@@ -8,28 +8,35 @@
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Quote Display -->
-  <div id="quoteDisplay"></div>
-  <button id="newQuoteBtn">Show New Quote</button>
-
-  <!-- Add Quote Form -->
-  <div id="addQuoteForm"></div>
-
   <!-- Category Filter -->
+  <label for="categoryFilter">Filter by Category:</label>
   <select id="categoryFilter" onchange="filterQuotes()">
     <option value="all">All Categories</option>
   </select>
 
-  <!-- JSON Import/Export -->
-  <button onclick="exportToJsonFile()">Export Quotes</button>
-  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  <!-- Quote Display + Random button -->
+  <div id="quoteDisplay"></div>
+  <button id="newQuote">Show New Quote</button>
 
-  <!-- Notifications -->
+  <!-- Add Quote (built dynamically by JS to satisfy createAddQuoteForm) -->
+  <div id="formContainer"></div>
+
+  <!-- Import / Export -->
+  <div>
+    <button id="exportBtn">Export Quotes (JSON)</button>
+    <input type="file" id="importFile" accept=".json" />
+  </div>
+
+  <!-- Sync controls (simple) -->
+  <div>
+    <button id="syncNow">Sync Now</button>
+  </div>
+
+  <!-- Notifications / Conflicts UI -->
   <div id="notification"></div>
-
-  <!-- 🔥 Conflict Resolver Section (empty at first, JS will fill it) -->
   <div id="conflictResolverContainer"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
