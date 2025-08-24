@@ -11,11 +11,22 @@
   <div id="quoteDisplay"></div>
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Container where the form will be injected dynamically -->
-  <div id="formContainer"></div>
+  <!-- Form to Add New Quote -->
+  <div>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button id="addQuoteBtn">Add Quote</button>
+  </div>
+
+  <!-- Import / Export JSON -->
+  <div>
+    <button id="exportBtn">Export Quotes (JSON)</button>
+    <input type="file" id="importFile" accept=".json" />
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
